@@ -1,0 +1,14 @@
+[package]
+name = "clitask"
+version = "0.9.0"
+authors = ["franciscolopezliebana"]
+
+[dependencies]
+clap = "*"
+preferences = "*"
+serde_derive = "^0.9.15"
+serde_json = "^0.9.10"
+serde = "^0.9.15"
+itertools = "0.7.8"
+curl = "0.4.18"
+scopeguard = "0.3.3"

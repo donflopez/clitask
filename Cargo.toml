@@ -3,13 +3,13 @@ name = "clitask"
 version = "0.9.1"
 authors = ["donflopez"]
 description = "Run and handle webtasks"
-repository = "git@github.com:donflopez/clitask.git"
+repository = "https://github.com/donflopez/clitask"
 homepage = "https://github.com/donflopez/clitask"
 edition = "2021"
 license = "MIT"
 
 [dependencies]
-clap = "*"
+clap = "3.0.10"
 preferences = "1.1.0"
 serde_derive = "0.9.6"
 serde_json = "0.9.5"

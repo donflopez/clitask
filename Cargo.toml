@@ -1,11 +1,12 @@
 [package]
 name = "clitask"
-version = "0.9.0"
+version = "0.9.1"
 authors = ["donflopez"]
 description = "Run and handle webtasks"
 repository = "git@github.com:donflopez/clitask.git"
 homepage = "https://github.com/donflopez/clitask"
 edition = "2021"
+license = "MIT"
 
 [dependencies]
 clap = "*"

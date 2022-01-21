@@ -1,16 +1,16 @@
 #[macro_use]
 extern crate serde_derive;
+extern crate preferences;
 
 extern crate clap;
 extern crate curl;
 extern crate itertools;
-extern crate preferences;
 extern crate scopeguard;
 extern crate serde_json;
 
+mod webtask;
 mod command;
 mod settings;
-mod webtask;
 use command::Command;
 use preferences::{AppInfo, Preferences};
 use settings::Settings;
@@ -132,44 +132,54 @@ fn main() {
         },
     };
 
-    if !settings.is_configured() {
-        println!(
-            "You need to configure your user before running -> {}",
-            matches.subcommand_name().unwrap_or_default()
-        );
-    } else {
-        match matches.subcommand() {
-            ("add", Some(sub_matched)) => {
-                let cmd = Command::new("add".to_owned(), settings, sub_matched.clone());
+    let checkSettings = || {
+        if !settings.is_configured() {
+            panic!(
+                "You need to configure your user before running -> {}",
+                matches.subcommand_name().unwrap_or_default()
+            );
+        }
+    };
 
-                cmd.run();
-            }
-            ("call", Some(sub_matched)) => {
-                let cmd = Command::new("call".to_owned(), settings, sub_matched.clone());
+    match matches.subcommand() {
+        ("add", Some(sub_matched)) => {
+            checkSettings();
 
-                cmd.run();
-            }
-            ("list", Some(sub_matched)) => {
-                let cmd = Command::new("list".to_owned(), settings, sub_matched.clone());
+            let cmd = Command::new("add".to_owned(), settings, sub_matched.clone());
 
-                cmd.run();
-            }
-            ("publish", Some(sub_matched)) => {
-                let cmd = Command::new("publish".to_owned(), settings, sub_matched.clone());
+            cmd.run();
+        }
+        ("call", Some(sub_matched)) => {
+            checkSettings();
 
-                cmd.run();
-            }
-            ("config", Some(sub_matched)) => {
-                let cmd = Command::new("config".to_owned(), settings, sub_matched.clone());
+            let cmd = Command::new("call".to_owned(), settings, sub_matched.clone());
 
-                cmd.run();
-            }
-            ("", None) => {
-                println!("{}", matches.usage());
-            }
-            (_, _) => {
-                unreachable!();
-            }
+            cmd.run();
+        }
+        ("list", Some(sub_matched)) => {
+            checkSettings();
+
+            let cmd = Command::new("list".to_owned(), settings, sub_matched.clone());
+
+            cmd.run();
+        }
+        ("publish", Some(sub_matched)) => {
+            checkSettings();
+
+            let cmd = Command::new("publish".to_owned(), settings, sub_matched.clone());
+
+            cmd.run();
+        }
+        ("config", Some(sub_matched)) => {
+            let cmd = Command::new("config".to_owned(), settings, sub_matched.clone());
+
+            cmd.run();
+        }
+        ("", None) => {
+            println!("{}", matches.usage());
+        }
+        (_, _) => {
+            unreachable!();
         }
     }
 }

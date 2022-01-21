@@ -1,6 +1,6 @@
 use preferences::{AppInfo, Preferences};
 use std::collections::HashMap;
-use webtask::Webtask;
+use crate::webtask::Webtask;
 
 const APP_INFO: AppInfo = AppInfo {
     name: "clitask",

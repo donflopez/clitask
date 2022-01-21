@@ -1,8 +1,8 @@
 use clap::ArgMatches;
 use serde_json;
-use settings::Settings;
+use crate::settings::Settings;
 use std::io::{self, Read};
-use webtask::Webtask;
+use crate::webtask::Webtask;
 
 pub struct Command {
     action: String,

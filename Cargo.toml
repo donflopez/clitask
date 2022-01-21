@@ -5,11 +5,10 @@ authors = ["donflopez"]
 description = "Run and handle webtasks"
 repository = "https://github.com/donflopez/clitask"
 homepage = "https://github.com/donflopez/clitask"
-edition = "2021"
 license = "MIT"
 
 [dependencies]
-clap = "3.0.10"
+clap = "2.32.0"
 preferences = "1.1.0"
 serde_derive = "0.9.6"
 serde_json = "0.9.5"
